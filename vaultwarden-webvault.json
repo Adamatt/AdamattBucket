@@ -10,9 +10,7 @@
             "extract_dir": "web-vault"
         }
     },
-    "checkver": {
-        "github": "https://github.com/dani-garcia/bw_web_builds"
-    },
+    "checkver": "github",
     "autoupdate": {
         "architecture": {
           "64bit": {

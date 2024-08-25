@@ -35,9 +35,7 @@
     "data",
     ".env"
   ],
-  "checkver": {
-    "github": "https://github.com/dani-garcia/vaultwarden"
-  },
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {
