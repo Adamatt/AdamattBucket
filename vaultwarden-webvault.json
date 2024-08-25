@@ -1,0 +1,23 @@
+{
+    "version": "2024.6.2b",
+    "description": "Web vault builds for vaultwarden ",
+    "homepage": "https://github.com/dani-garcia/bw_web_builds",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/dani-garcia/bw_web_builds/releases/download/v2024.6.2b/bw_web_v2024.6.2b.tar.gz",
+            "hash": "6415c475dbec312e912c286724198992dcb8ed289baa3334db1665ccbda6872a",
+            "extract_dir": "web-vault"
+        }
+    },
+    "checkver": {
+        "github": "https://github.com/dani-garcia/bw_web_builds"
+    },
+    "autoupdate": {
+        "architecture": {
+          "64bit": {
+            "url": "https://github.com/dani-garcia/bw_web_builds/releases/latest/download/bw_web_v$version.tar.gz"
+          }
+        }
+    }
+}

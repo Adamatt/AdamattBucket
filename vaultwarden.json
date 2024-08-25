@@ -1,0 +1,49 @@
+{
+    "##":"Please install VSBuildTools before: winget install Microsoft.VisualStudio.2022.BuildTools --force --override \"--wait --passive --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.Windows11SDK.22000\"",
+  "homepage": "https://github.com/dani-garcia/vaultwarden",
+  "description": "Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs",
+  "notes": "Please ensure you have installed VS build tools beforehand: https://visualstudio.microsoft.com/visual-cpp-build-tools/ . You can edit the .env file for changing the server settings.",
+  "version": "1.32.0",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/dani-garcia/vaultwarden/archive/refs/tags/1.32.0.zip",
+      "hash": "c6703128cf862271d7257ba0fc8759ef5e184d9e87cf181fb51807b3bcd69777",
+      "extract_dir": "vaultwarden-1.32.0",
+      "extract_to": "src"
+    }
+  },
+  "shortcuts": [ "vaultwarden.exe" ],
+  "depends": [
+    "rust",
+    "openssl"
+  ],
+  "suggest":[
+    "vaultwarden-webvault"  
+  ],
+  "pre_install": [
+    "if (-not (Test-Path \"$persist_dir\\data\")) { mkdir \"$dir\\data\" | Out-Null }",
+    "if (Test-Path \"$(appdir openssl)\\current\\\") { $env:OPENSSL_DIR = \"$scoopdir\\apps\\openssl\\current\" }",
+    "curl -s https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/.env.template -o $dir\\.env",
+    "pushd \"$dir\\src\"; cargo build --features sqlite --release; popd; mv \"$dir\\src\\target\\release\\vaultwarden.exe\" \"$dir\\vaultwarden.exe\""
+  ],
+  "post_install": [
+    "[void](rd \"$dir/src\" -ea Continue -Recurse -Force);",
+    "if (Test-Path \"$(appdir vaultwarden-webvault)\\current\\\") { (Get-Content -Path '$dir\\.env') -Replace '# WEB_VAULT_FOLDER=web-vault/', 'WEB_VAULT_FOLDER=$(appdir vaultwarden-webvault)\\current\\' | Set-Content -Path '$dir\\.env' }",
+  ],
+  "persist": [
+    "data",
+    ".env"
+  ],
+  "checkver": {
+    "github": "https://github.com/dani-garcia/vaultwarden"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/dani-garcia/vaultwarden/archive/refs/tags/$version.zip"
+      }
+    }
+  }
+}
+
