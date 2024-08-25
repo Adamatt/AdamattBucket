@@ -19,7 +19,7 @@
         }
     },
     "bin": "nuclei.exe",
-    "checkver": "github",
+    "checkver": "https://github.com/projectdiscovery/nuclei",
     "autoupdate": {
         "architecture": {
             "64bit": {
