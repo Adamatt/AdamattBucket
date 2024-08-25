@@ -20,7 +20,8 @@
     },
     "bin": "nuclei.exe",
     "checkver": {
-        "github": "https://github.com/projectdiscovery/nuclei"
+        "github": "https://github.com/projectdiscovery/nuclei/",
+        "regex": "nuclei_([\\d.]+)_windows_amd64\\.zip"
     },
     "autoupdate": {
         "architecture": {
